@@ -8,6 +8,8 @@ const io = require("socket.io")(http , {cors: {
     origin: '*',
   }});
 
+app.use(express.static('public'));
+
 io.on("connection", function(socket){
     console.log( `${socket.id} user connected`);
 
@@ -24,8 +26,8 @@ io.on("connection", function(socket){
 }) 
 
 app.get("/" , function(req, res){
-    res.write("<h1> Welcome to home page !!! </h1>");
-    res.send();
+    // res.write("<h1> Welcome to home page !!! </h1>");
+    res.redirect('index.html');
 });
      
     // socket.on("testing", function(data){
