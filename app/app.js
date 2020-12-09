@@ -1,4 +1,4 @@
-// remove nodemon from nodemon app.js from json file before deployment on heroku.
+// remove nodemon from "nodemon app.js" from json file and write "node app.js" before deployment on heroku.
 const express = require("express");
 const app = express();
 
