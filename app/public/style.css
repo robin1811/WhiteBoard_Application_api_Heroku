@@ -118,22 +118,19 @@ html {
   background: black;
 }
 
-.hide {
-    display: none;
-}
 
 .active-tool {
-    /* background: white; */
-    /* transform: scale(1); */
-    height: 60px;
-    padding: 7px;
-    border-radius: 7px;
-   
-    box-shadow: 0 8px 6px -6px rgb(87, 87, 87);
+  /* background: white; */
+  /* transform: scale(1); */
+  height: 60px;
+  padding: 7px;
+  border-radius: 7px;
+  
+  box-shadow: 0 8px 6px -6px rgb(87, 87, 87);
 }
 
 .active-tool img {
-   animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
 }
 
 .sticky {
@@ -143,49 +140,49 @@ html {
   border: 1px solid lightgray;
 }
 .sticky-header {
-    background: aliceblue;
-    height: 36px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-bottom: 1px solid lightgray;
-  }
-  .minimize {
-    height: 22px;
-    background: lightgreen;
-    width: 22px;
-    border-radius: 10px;
-    margin-right: 5px;
-  }
-  .close {
-    height: 22px;
-    background: lightcoral;
-    width: 22px;
-    border-radius: 10px;
-    margin-right: 5px;
-  }
-  .stickybox {
-    outline: none;
-    border: none;
-  }
+  background: aliceblue;
+  height: 36px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.minimize {
+  height: 22px;
+  background: lightgreen;
+  width: 22px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+.close {
+  height: 22px;
+  background: lightcoral;
+  width: 22px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+.stickybox {
+  outline: none;
+  border: none;
+}
 
-  .erase-all {
-    background-color: dodgerblue;
-    color : white;
-    padding: 7px;
-    box-shadow: inset 0 0 5px white;
-    border-radius: 50px;
-    border: none;
-    outline: none;
-    /* font-family: -webkit-pictograph; */
-    font-size: large;
-  }
+.erase-all {
+  background-color: dodgerblue;
+  color : white;
+  padding: 7px;
+  box-shadow: inset 0 0 5px white;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  /* font-family: -webkit-pictograph; */
+  font-size: large;
+}
 
-  .photo {
-    /* width : 400px; */
-    /* height: 400px; */
-    object-fit: contain;
-  }
+.photo {
+  /* width : 400px; */
+  /* height: 400px; */
+  object-fit: contain;
+}
 
 
 .add-animation{
@@ -238,3 +235,21 @@ html {
 .hideAnimation:after {
   display: none;
 }
+
+.shapes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 325px;
+  width: 150px;
+  left: -50px;
+}
+
+.shapes div{
+  
+  /* background-color: chocolate; */
+  margin: auto;
+}
+.hide {
+  display: none;
+ }

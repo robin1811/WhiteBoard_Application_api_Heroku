@@ -28,25 +28,27 @@ let isPenDown = false;
     let clearAllDb = [];
 // 105:
 
-canvas.addEventListener("mousedown",function(e){
-    // console.log(e);
+    let lmousex = 0;
+    let lmousey = 0;
+    let fmousex = 0 
+    let fmousey = 0;
+    let rectmousedown = false;
+    let width = 0;
+    let height = 0;
+    let radius = 0;
 
-    // socket.emit("mousedown", "I am drawing !!!");
 
+function selectedPencilMD(e){
     if(redoPoints.length){
         redoPoints = [];
     }
     isPenDown = true;
     let x = e.x;
     let y = e.y-topOffSet;
-    // console.log(x,y);
-    // let x1 = e.clientX;
-    // let y2 = e.clientY;
-    // console.log(x1,y2);
+
     ctx.beginPath();
     ctx.moveTo(x,y);
-    // ctx.stroke();  
-    // 106:
+
     let point = {}
     console.log(ctx.strokeStyle);
     if(ctx.strokeStyle == "#ff0000" || ctx.strokeStyle == "#ffff00" || ctx.strokeStyle == "#0000ff" || ctx.strokeStyle == "#000000" ){
@@ -58,7 +60,6 @@ canvas.addEventListener("mousedown",function(e){
             strokeStyle : ctx.strokeStyle,
             lineWidth : ctx.lineWidth
         }
-        // console.log("inside md if");
     }
     else{
         if(gridBtn.checked == true){
@@ -73,16 +74,15 @@ canvas.addEventListener("mousedown",function(e){
             strokeStyle : ctx.strokeStyle,
             lineWidth : ctx.lineWidth
         }
-        // console.log("inside md else");
+
     }
         line.push(point);
         socket.emit("mousedown", point);
-    // 106:
-})
+};
 
-canvas.addEventListener("mousemove", function(e){
-    // console.log(e);
-    if(isPenDown){
+function selectedPencilMM(e){
+     // console.log(e);
+     if(isPenDown){
         let x = e.x;
         let y = e.y-topOffSet;
         ctx.lineTo(x,y)
@@ -116,13 +116,199 @@ canvas.addEventListener("mousemove", function(e){
             socket.emit("mousemove", point);
         // 106:
     }
+}
+
+
+canvas.addEventListener("mousedown",function(e){
+    if(rectbtn.classList.contains("active-tool")){
+        rectmousedown = true;
+        lmousex = e.x;
+        lmousey = e.y-topOffSet;
+        // ctx.lineWidth = 2; 
+
+    }
+    else if(circlebtn.classList.contains("active-tool")){
+        rectmousedown = true;
+        lmousex = e.x;
+        lmousey = e.y-topOffSet;
+    }
+    else if(trianglebtn.classList.contains("active-tool")){
+        rectmousedown = true;
+        lmousex = e.x;
+        lmousey = e.y-topOffSet;
+    }
+    else if(linebtn.classList.contains("active-tool")){
+        rectmousedown = true;
+        lmousex = e.x;
+        lmousey = e.y-topOffSet;
+    }
+    else{
+        selectedPencilMD(e);
+        
+    }
+})
+
+
+
+canvas.addEventListener("mousemove", function(e){
+    if(rectbtn.classList.contains("active-tool")){
+        if(rectmousedown){
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            fmousex = e.x;
+            fmousey = e.y-topOffSet;
+            
+            width = fmousex - lmousex;
+            height = fmousey- lmousey;
+            
+            ctx.clearRect( 0 , 0,canvas.width,canvas.height);
+            ctx.rect(lmousex,lmousey,width,height);
+
+            ctx.stroke();
+            drawPoints();   
+            ctx.strokeStyle = 'black';
+            if(gridBtn.checked == true){
+                drawGrid(800,400,"canvas");
+            }
+        }
+    }
+    else if(circlebtn.classList.contains("active-tool")){
+        if(rectmousedown){
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'black';
+            ctx.beginPath();
+            
+            fmousex = e.x;
+            fmousey = e.y-topOffSet;
+            width = fmousex - lmousex;
+            height = fmousey- lmousey;
+
+            let length = width * width;
+            let breath = height * height;
+            let diameter = Math.sqrt(length + breath);
+            radius = diameter/2;
+            
+            
+            ctx.clearRect( 0 , 0,canvas.width,canvas.height);
+            ctx.arc(lmousex ,lmousey, radius, 0, 2 * Math.PI);
+
+            ctx.stroke();
+            drawPoints();  
+            if(gridBtn.checked == true){
+                drawGrid(800,400,"canvas");
+            } 
+        }
+    }
+    else if(trianglebtn.classList.contains("active-tool")){
+        if(rectmousedown){
+            ctx.lineWidth = 2;
+            // ctx.globalCompositeOperation="destination-out";
+            ctx.beginPath();
+            
+            fmousex = e.x;
+            fmousey = e.y-topOffSet;
+            
+            ctx.clearRect( 0 , 0,canvas.width,canvas.height);
+            ctx.moveTo(fmousex, fmousey );
+            ctx.lineTo(fmousex, lmousey);
+            ctx.lineTo(lmousex,fmousey);
+            ctx.closePath();
+            
+            
+            ctx.stroke();
+            drawPoints();   
+            ctx.strokeStyle = 'black';
+            if(gridBtn.checked == true){
+                drawGrid(800,400,"canvas");
+            }
+        }
+    }
+    else if(linebtn.classList.contains("active-tool")){
+        if(rectmousedown){
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            fmousex = e.x;
+            fmousey = e.y-topOffSet;
+            
+            ctx.clearRect( 0 , 0,canvas.width,canvas.height);
+            ctx.moveTo(lmousex,lmousey)
+            ctx.lineTo(fmousex, fmousey);
+
+            ctx.stroke();
+            drawPoints();   
+            ctx.strokeStyle = 'black';
+            if(gridBtn.checked == true){
+                drawGrid(800,400,"canvas");
+            }
+        }
+    }
+    else{
+        selectedPencilMM(e);
+    }
 })
 
 canvas.addEventListener("mouseup",function(e){
+    if(rectbtn.classList.contains("active-tool")){
+        let point = {
+            tool : "rect",
+            x : lmousex,
+            y : lmousey,
+            width : width,
+            height : height,
+            strokeStyle : "black",
+            // lineWidth : 2
+        }
+        line.push(point);
+    }
+    else if(circlebtn.classList.contains("active-tool")){
+        let point = {
+            tool : "circle",
+            x : lmousex,
+            y : lmousey,
+            width : width,
+            height : height,
+            strokeStyle : "black",
+            radius : radius
+            // lineWidth : 2
+        }
+        line.push(point);
+    }
+    else if(trianglebtn.classList.contains("active-tool")){
+        let point = {
+            tool : "triangle",
+            x : lmousex,
+            y : lmousey,
+            fx : fmousex,
+            fy : fmousey,
+            strokeStyle : "black"
+            // lineWidth : 2
+        }
+        line.push(point);
+    }
+    else if(linebtn.classList.contains("active-tool")){
+        let point = {
+            tool : "line",
+            x : lmousex,
+            y : lmousey,
+            fx : fmousex,
+            fy : fmousey,
+            strokeStyle : "black"
+            // lineWidth : 2
+        }
+        line.push(point);
+    }
+    
     isPenDown = false;
+    rectmousedown = false;
     PointsDb.push(line);
+    socket.emit("mouseup", "mouse is up");
     line = [];
+    drawPoints();   
     console.log(PointsDb);
+    // rectbtn.classList.remove("active-tool");
+    // pencil.classList.add('active-tool');
 })
 // 102:
 
