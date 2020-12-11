@@ -1,4 +1,3 @@
-// 107:
 let undo = document.querySelector("#undo");
 let redo = document.querySelector("#redo");
 let pencil = document.querySelector("#pencil");
@@ -55,7 +54,6 @@ eraserSize.addEventListener("change" , function(e){
    ctx.lineWidth = eraserWidth;
 })
 let myLastSelectedColor = "black";
-// myCursor.style.cursor = "url('./resources-master/cursor/Crosshair '" + myLastSelectedColor + "'.cur), auto";
 for(let i=0; i<penColors.length; i++){
     penColors[i].addEventListener("click",function(){
         if(penColors[i].classList.contains("red")){
@@ -79,14 +77,9 @@ for(let i=0; i<penColors.length; i++){
     })
 }
 
-// ctx.lineWidth = 20;
-
-// let activeTool = "pencil";
-
 pencil.addEventListener("click" , function(){
     if( !pencil.classList.contains("active-tool")){
         myCursor.style.cursor = "url('./resources-master/cursor/Crosshair black.cur'), auto";
-        // myCursor.style.cursor = "url('./resources-master/cursor/Crosshair black.cur), auto";
         eraser.classList.remove("active-tool");
         eraserOptions.classList.add("hide");
         pencil.classList.add("active-tool");
@@ -137,15 +130,10 @@ eraser.addEventListener("click" , function(){
 })
 
 
-
-
-
-// let myCount = 1
 undo.addEventListener("click",undofunc );
 
 function undofunc(){
    
-    // myCount = myCount + 1;
     eraserOptions.classList.add("hide")
     pencilOptions.classList.add("hide")
     console.log(ctx.strokeStyle);
@@ -171,16 +159,23 @@ function undofunc(){
     if(gridBtn.checked == true){
         drawGrid(800,400,"canvas");
     }
-    socket.emit("socketUndo","true");
-    // socket.emit("socketUndo","stop");
+
+    if(undoVar == true){
+        socket.emit("socketUndo","true");
+    }
 }
 
+
 let myBackgroundColor = "#ffffff";
-redo.addEventListener("click",redofunc)
+redo.addEventListener("click",function(){
+    redofunc();
+})
+
+let undoVar = true;
+let redoVar = true;
 
 function redofunc(){
-   
-    // myCount = myCount - 1;
+    
     eraserOptions.classList.add("hide");
     pencilOptions.classList.add("hide")
     console.log(ctx.strokeStyle);
@@ -242,9 +237,11 @@ function redofunc(){
     if(gridBtn.checked == true){
         drawGrid(800,400,"canvas");
     } 
-    socket.emit("socketUndo", "false");
-    // socket.emit("socketUndo","stop");
+    if(redoVar == true){
+        socket.emit("socketUndo", "false");
+    }
 }
+
 
 function drawPoints(){
     ctx.strokeStyle = myEraserColor;
@@ -253,11 +250,8 @@ function drawPoints(){
         for(let j=0; j<line.length; j++){
             ctx.lineWidth = line[j].lineWidth; 
             ctx.strokeStyle = line[j].strokeStyle;
-            // console.log(line[j].tool);
             if(line[j].tool == "pencil"){
-                // console.log("inside pensil");
                 if(line[j].id == "md"){
-                    // console.log("inside md");
                     ctx.beginPath();
                     ctx.moveTo(line[j].x , line[j].y);
                 }
@@ -275,7 +269,6 @@ function drawPoints(){
             else if(line[j].tool == "circle"){
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                // ctx.rect(line[j].x, line[j].y, line[j].width, line[j].height);
                 ctx.arc( line[j].x, line[j].y, line[j].radius, 0, 2 * Math.PI);
                 ctx.stroke();
             }
@@ -298,7 +291,6 @@ function drawPoints(){
             else{
                 ctx.strokeStyle = myEraserColor;
                 if(line[j].id == "md"){
-                    // console.log("inside md");
                     ctx.beginPath();
                     ctx.moveTo(line[j].x , line[j].y);
                 }
@@ -307,7 +299,6 @@ function drawPoints(){
                     ctx.stroke();
                 }
             }
-            // console.log("outside ");
         }
     }
     if(pencil.classList.contains("active-tool")){
@@ -319,10 +310,6 @@ function drawPoints(){
     
 }
 // 107:
-
-
-//////////////////////////////////////
-
 
 document.querySelector(".cornerBtn").addEventListener("click",function() {
     if( document.querySelector(".popupDiv").style.display=="block"){
@@ -424,9 +411,6 @@ document.querySelector(".bg-skyblue").addEventListener("click",function(){
     myTools.style.backgroundColor = "antiquewhite";
     socket.emit("bgColor",myBackgroundColor);
 });
-
-// socket.emit("bgColor",myBackgroundColor);
-
 
 // ======== Shortcuts =============
 document.addEventListener("keydown", function (e) {

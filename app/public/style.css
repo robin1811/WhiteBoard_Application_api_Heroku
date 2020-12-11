@@ -1,22 +1,13 @@
 * {
   box-sizing: border-box;
-  /* cursor: url(crosshair.cur, default); */
-  /* cursor: url(Crosshair\ Black.cur), pointer; */
-  /* cursor: crosshair; */
 }
 
 body,
 html {
   margin: 0px;
-  /* cursor: crosshair; */
- /* cursor: url(./resources-master/cursor/Crosshair\ black.cur), pointer; */
- /* background : url("./resources-master/gridimg.png") repeat; */
- /* cursor : url('./resources-master/cursor/imposter.cur'), auto; */
 }
 
 .tools {
-  /* background: rgb(51, 93, 129); */
-  /* background-color: plum; */
   height: 100px;
   display: flex;
   align-items: center;
@@ -31,8 +22,6 @@ html {
   cursor : url('./resources-master/cursor/Crosshair black.cur'), auto;
   box-shadow: inset 1px 1px 10px #000000;
   border-radius: 5px;
-  /* background: url("resources-master/resources-master/Pixel_grid_4000x2000\ \(1\).svg"); */
-  /* background-size: repe; */
 }
 
 #canvas {
@@ -47,6 +36,8 @@ html {
   align-items: center;
   border-radius: 20px;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.275);
+  cursor: url('./resources-master/cursor/Gamma\ Pro\ Cursor.cur'),auto;
+
 }
 
 .tool {
@@ -101,27 +92,32 @@ html {
   height: 30px;
   width: 30px;
   border-radius: 20px;
-  /* border: 1px solid; */
   box-shadow: inset 0 0 4px;
 }
 
 .red {
   background: red;
+  cursor: url('./resources-master/cursor/redImposter.cur'),auto;
+
 }
 .yellow {
   background: yellow;
+  cursor: url('./resources-master/cursor/yellowImposter.cur'),auto;
+
 }
 .blue {
   background: blue;
+  cursor: url('./resources-master/cursor/blueImposter.cur'),auto;
+
 }
 .black {
   background: black;
+  cursor: url('./resources-master/cursor/blackImposter.cur'),auto;
+
 }
 
 
 .active-tool {
-  /* background: white; */
-  /* transform: scale(1); */
   height: 60px;
   padding: 7px;
   border-radius: 7px;
@@ -174,13 +170,10 @@ html {
   border-radius: 50px;
   border: none;
   outline: none;
-  /* font-family: -webkit-pictograph; */
   font-size: large;
 }
 
 .photo {
-  /* width : 400px; */
-  /* height: 400px; */
   object-fit: contain;
 }
 
@@ -201,20 +194,21 @@ html {
 }
 
 .tool-button {
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.175);
-  background : white;
   height: 60%;
   width: 4%;
-  border-radius: 40px ;
+  border-radius: 30px ;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   left: 25px;
 }
+.tool-button:hover {
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.275);
+}
 .fas {
   font-size : 30px;
-  color: lightgray;
+  color: gray;
 }
 
 .hideAnimation {
@@ -246,8 +240,6 @@ html {
 }
 
 .shapes div{
-  
-  /* background-color: chocolate; */
   margin: auto;
 }
 .hide {

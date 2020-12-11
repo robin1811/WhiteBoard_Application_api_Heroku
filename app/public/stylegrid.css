@@ -12,33 +12,25 @@
     2px 5px 6px rgba(0,0,0,0.6),
     inset 0px 0px 10px rgba(255,255,255,0.05),
     inset 0px 0px 10px rgba(0,0,0,0.3);
-    /* border:none; */
-    /* background-color: red; */
 }
 .popupDiv{
     display: none;
     height: 150px;
     width: 150px;
-    border: 1px red solid;
     position: fixed;
     right: 30px;
     bottom: 30px;
     border-radius: 20%;
-    /* overflow: hidden; */
+    
 }
 .popup{
-    /* height: 500px;
-    width: 500px; */
-    /* background-color: #091921; */
-    /* position: fixed; */
     right: 2%;
     bottom: 4%;
     border-radius: 20%;
-    /* overflow: hidden; */
+    
 }
 .popup-btn{
-    /* height: 45px;
-    width: 45px; */
+    
     height: 85px;
     width: 85px;
     outline: none;
@@ -47,28 +39,20 @@
     border-radius: 50% ;
 }
 .gridBtn{
-    /* background-color: red; */
     bottom:-15px;
-    /* left: 20px; */
 }
 .bgColorBtn{
     
     right: -15px;
-    /* top: 20px; */
-
 }
 .bg-color-div{
     display:none;
     position: absolute;
     height: 200px;
     width: 50px;
-    /* background-color:#091921; */
     bottom: 170px;
     right: 32px;
     border-radius: 25%;
-    /* display: inline-block; */
-    /* margin: auto; */
-    /* justify-content:  ; */
 }
 .bg{
     height:35px;
@@ -83,7 +67,6 @@
     color: #ffffff;
     border-radius: 50%;
     font-size: 16px;
-    /* position: absolute; */
     top: -4px;
     left: -4px;
     -webkit-appearance: none;
@@ -121,17 +104,13 @@
 }
 .bgColorBtn > input[type="checkbox"]:after
 {
-    /* font-family: FontAwesome; */
     content : 'Background Color';
     font-size: 13px;
-    /* color: red; */
 
 }
 .gridBtn > input[type="checkbox"]:after
 {
-    /* font-family: FontAwesome; */
     content : 'Add Grid';
-    /* color: red; */
 
 }
 .cornerBtn:hover , .bg:hover ,input[type="checkbox"]:hover{
@@ -140,10 +119,6 @@
     2px 2px 6px rgba(0,0,0,0.8),
     inset -2px -2px 10px rgba(255,255,255,0.05),
     inset 2px 2px 10px rgba(0,0,0,0.5);
-    /* -10px -10px 15px rgba(255,255,255,0.7),
-    10px 10px 15px rgba(70,70,70,0.5),
-    inset -10px -10px 15px rgba(255,255,255,0.5),
-    inset 10px 10px 15px rgba(70,70,70,0.12);*/
 } 
 input[type="checkbox"]:checked{
     color:#00fff1;
@@ -152,24 +127,17 @@ input[type="checkbox"]:checked{
     inset 2px 2px 6px rgba(0,0,0,1);
     text-shadow: 0 0 5px #00fff1,
     0 0 20px #00fff1;
-    /* inset -2px -2px 10px rgba(255,255,255,0.05),
-    inset 2px 2px 10px rgba(0,0,0,0.5); */
-    
+   
 } 
 .bgColorBtn > input[type="checkbox"]:checked:after
 {
-    /* font-family: FontAwesome; */
     content : 'Background Color';
     font-size: 13px;
-    /* color: red; */
 
 }
 .gridBtn > input[type="checkbox"]:checked:after
 {
-    /* font-family: FontAwesome; */
     content : 'Add Grid';
-    /* color: red; */
-
 }
 .bg-pink{
     background-color: pink;

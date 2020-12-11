@@ -40,7 +40,6 @@ let count4 = 1;
     ctx.strokeStyle = myBackgroundColor;
     console.log("THIS IS MY COLOR = " + myBackgroundColor);
     if(myBackgroundColor == "#ffc0c8" && count1 == 1){
-        // document.querySelector(".content").style.backgroundColor = "#ffc0c8";
         document.querySelector(".bg-pink").click();
         count1 = count1 + 1; count2 = 1; count3 = 1; count4 = 1;   
     }
@@ -73,34 +72,79 @@ let count4 = 1;
       }
     }
   })
-  // socket.on("mySocketUndo",function(data){
-    //   if(undoCount == data){
-      //     undo.click();
-      //     undoCount = undoCount + 1;
-      //   }
-      // })
-      
-      // socket.on("mySocketRedo",function(data){
-        //   if(undoRedoCount == data){
-          //     redo.click();
-          //     undoRedoCount = undoRedoCount - 1;
-          //   }
-          // })
-          
-  let undoCount = 1;
-  let redoCount = 1;
   socket.on("mySocketUndo",function(data){
-    if(data == "true" && undoCount == 1){
+    if(data == "true"){
+      undoVar = false;
       undo.click();
-      undoCount = undoCount + 1;
-      redoCount = 1;
-    }
-    else if(data == "false" && redoCount == 1){
-      redo.click();
-      redoCount = redoCount + 1;
-      undoCount = 1;
     }
     else{
-      // undoRedoCount = undoRedoCount - 1;
+      redoVar = false;
+      redo.click();
     }
+  })
+
+
+  socket.on("myrectangle",function(point){
+    let myStrokeStyle = ctx.strokeStyle;
+    let myWidth = ctx.lineWidth;
+    
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.rect(point.x,point.y,point.width,point.height);
+    ctx.stroke();
+
+    ctx.lineWidth = myWidth;
+    ctx.strokeStyle = myStrokeStyle;
+    line.push(point);
+  })
+  socket.on("mycircle",function(point){
+    let myStrokeStyle = ctx.strokeStyle;
+    let myWidth = ctx.lineWidth;
+    
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.arc(point.x ,point.y, point.radius, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    ctx.lineWidth = myWidth;
+    ctx.strokeStyle = myStrokeStyle;
+    line.push(point);
+  })
+  socket.on("mytriangle",function(point){
+    let myStrokeStyle = ctx.strokeStyle;
+    let myWidth = ctx.lineWidth;
+    
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(point.fx, point.fy );
+    ctx.lineTo(point.fx, point.y);
+    ctx.lineTo(point.x,point.fy);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.lineWidth = myWidth;
+    ctx.strokeStyle = myStrokeStyle;
+    line.push(point);
+  })
+  socket.on("myline",function(point){
+    let myStrokeStyle = ctx.strokeStyle;
+    let myWidth = ctx.lineWidth;
+    
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(point.x,point.y)
+    ctx.lineTo(point.fx, point.fy);
+    ctx.stroke();
+
+    ctx.lineWidth = myWidth;
+    ctx.strokeStyle = myStrokeStyle;
+    line.push(point);
   })

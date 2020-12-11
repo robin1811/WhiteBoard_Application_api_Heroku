@@ -21,13 +21,9 @@ upload.addEventListener("click",function(){
 
 imageUpload.addEventListener("change", function(){
 
-    // console.log(imageUpload.files);
-    // console.log(imageUpload.files[0]);
     let fileObject = imageUpload.files[0];
 
     let filePath = URL.createObjectURL(fileObject);
-
-    // console.log(URL.createObjectURL(fileObject));
 
     let img = document.createElement("img");
     img.setAttribute("src" , filePath);
@@ -49,7 +45,6 @@ imageUpload.addEventListener("change", function(){
 
     let stickyContent = document.createElement("div");
     stickyContent.classList.add("sticky-content");
-    // console.log(img);
 
         stickyHeader.appendChild(minimize);
         stickyHeader.appendChild(close);
@@ -79,7 +74,6 @@ imageUpload.addEventListener("change", function(){
                     if(height <= 400 && width <= 400){
                         myPhoto.style.height = "200px";
                         console.log(myPhoto.style.height);
-                        // myPhoto.style.width = 400 + "px";
                     }
                     else if (height <= 800 && width <= 800){
                         myPhoto.style.height = "250px";
@@ -136,45 +130,3 @@ imageUpload.addEventListener("change", function(){
             sticky.remove(); 
         })
 })
-
-
-
-
-// let myImage = document.createElement("div");
-// myImage.classList.add("my-image");
-// myImage.appendChild(img);
-// document.body.appendChild(myImage);
-
-// let myIitialX;
-// let myInitialY;
-// let isImgHold = false;
-
-// myImage.addEventListener("mousedown",function(e){
-//     isImgHold = true;
-//     myInitialX = e.x;
-//     myInitialY = e.y;
-// })
-
-// myImage.addEventListener("mousemove",function(e){
-//     if(isImgHold){
-//         let finalX = e.x;
-//         let finalY = e.y;
-//         let dy = finalY - myInitialY;
-//         let dx = finalX - myInitialX;
-
-//         let{top , left} = sticky.getBoundingClientRect();
-
-//         sticky.style.top = top + dy + "px";
-//         sticky.style.left = left + dx + "px";
-
-//         myInitialX = finalX;
-//         myInitialY = finalY;
-//     }
-// })
-
-// myImage.addEventListener("mouseup",function(e){
-//     isImgHold  = false;
-// })
-
-
-// // document.body.appendChild(img);

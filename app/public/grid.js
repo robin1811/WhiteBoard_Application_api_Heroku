@@ -26,13 +26,6 @@ var drawGrid = function(w, h, id) {
     img.src = url;
 }
 
-
-
-// drawGrid(1400, 700, "canvas");
-// drawGrid(1200, 600, "canvas"); 
-// drawGrid(1000, 500, "canvas");
-// drawGrid(400, 200, "canvas");
-// drawGrid(800, 400, "canvas");
 let gridBtn = document.querySelector("#gridInput");
 gridBtn.addEventListener("click",function(){
     if(gridBtn.checked == true){
@@ -45,14 +38,4 @@ gridBtn.addEventListener("click",function(){
         drawPoints();
         socket.emit("addGrid", false);
     }
-    // drawGrid(800, 400, "canvas");
 })
-// document.querySelector(".bg-sm-grid").addEventListener("click",function(){
-   
-// })
-// document.querySelector(".bg-md-grid").addEventListener("click",function(){
-// })
-// document.querySelector(".bg-lg-grid").addEventListener("click",function(){
-// })
-// document.querySelector(".bg-xl-grid").addEventListener("click",function(){
-// })
