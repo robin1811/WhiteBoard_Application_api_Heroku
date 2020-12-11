@@ -6,6 +6,8 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http , {cors: {
     origin: '*',
   }});
+  
+app.use(express.static('public'));
 
 io.on("connection", function(socket){
     console.log( `${socket.id} user connected`);
