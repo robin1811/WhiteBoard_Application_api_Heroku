@@ -52,8 +52,8 @@ io.on("connection", function(socket){
 }) 
 
 app.get("/" , function(req, res){
-    res.write("<h1> Welcome to home page !!! </h1>");
-    res.send();
+    
+    res.redirect("./index.html");
 });
      
     // socket.on("testing", function(data){
